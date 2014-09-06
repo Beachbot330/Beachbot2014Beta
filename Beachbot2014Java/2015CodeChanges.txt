@@ -8,3 +8,4 @@ AP: Decrement all channel numbers (went from 1 referenced to 0 referenced)
 JD: SmartDashboardLCD.java - renamed import edu.wpi.first.wpilibj.SPIDevice to .SPI
 JD: Update SPIDevice to SPI in CFA634SPI.java
 AP: Remove com.sun.squawk.util.MathUtils
+JD: Remmed out CFA634SPI.java code for now since it's not used
