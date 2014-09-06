@@ -52,16 +52,6 @@ public class BackgroundCalibratingGyro extends Gyro {
     }
 
     /**
-     * Gyro constructor given a slot and a channel.
-    .
-     * @param slot The cRIO slot for the analog module the gyro is connected to.
-     * @param channel The analog channel the gyro is connected to.
-     */
-    public BackgroundCalibratingGyro(int slot, int channel) {
-        super(slot, channel);
-    }
-
-    /**
      * Gyro constructor with only a channel.
      *
      * Use the default analog module slot.
@@ -78,7 +68,7 @@ public class BackgroundCalibratingGyro extends Gyro {
      * is no reference counting when an AnalogChannel is passed to the gyro.
      * @param channel The AnalogChannel object that the gyro is connected to.
      */
-    public BackgroundCalibratingGyro(AnalogChannel channel) {
+    public BackgroundCalibratingGyro(AnalogInput channel) {
         super(channel);
     }
     

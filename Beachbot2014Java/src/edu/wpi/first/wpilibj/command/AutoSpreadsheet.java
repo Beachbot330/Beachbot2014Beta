@@ -4,16 +4,15 @@
  */
 package edu.wpi.first.wpilibj.command;
 
-import com.sun.squawk.io.BufferedReader;
-import com.sun.squawk.microedition.io.FileConnection;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Hashtable;
-import javax.microedition.io.Connector;
+
 import org.usfirst.frc330.Beachbot2014Java.commands.MarsRock;
 import org.usfirst.frc330.Beachbot2014Java.commands.Wait;
+
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
@@ -77,43 +76,70 @@ import org.usfirst.frc330.Beachbot2014Java.commands.Wait;
  * @author joe
  */
 public class AutoSpreadsheet {
-    FileConnection file = null;
+//    FileReader file = null;
     BufferedReader reader = null;
-    final String filename = "file:///2014AutoModesJava.csv";
+//    final String defaultFilename = "2014AutoModesJava.csv";
+    String filename;
+    String commandPackage;
     SendableChooser autoChooser;   
+    
+    public AutoSpreadsheet(String filename, String commandPackage)
+    {
+    	this.filename = filename;
+    	this.commandPackage = commandPackage;
+        selectedAuto = new String();
+//      System.out.println("begin of AutoSpreadsheet Constructor");
+      autoChooser = new SendableChooser();
+//      System.out.println(MarsRock.class.getName());
+      autoChooser.addDefault("Mars Rock", new MarsRock());
+//    System.out.println("end of AutoSpreadsheet Constructor");
+    }
     
     public AutoSpreadsheet()
     {
-        selectedAuto = new String();
-//        System.out.println("begin of AutoSpreadsheet Constructor");
-        autoChooser = new SendableChooser();
-//        System.out.println(MarsRock.class.getName());
-        autoChooser.addDefault("Mars Rock", new MarsRock());
-//        System.out.println("end of AutoSpreadsheet Constructor");
+    	this("2014AutoModesJava.csv", "org.usfirst.frc.team330.robot.commands");
     }
     
-    private Hashtable commandTable = new Hashtable();
-    
-    public void addCommand(Command command)
-    {
-        commandTable.put(command.getName().toUpperCase(), command);
-    }
-
-    public void addCommand(AutoSpreadsheetCommandGroup command)
-    {
-        commandTable.put(command.getName().toUpperCase(), command);
-    }
+//    private Hashtable<String,Command> commandTable = new Hashtable<String, Command>();
+//    
+//    public void addCommand(Command command)
+//    {
+//        commandTable.put(command.getName().toUpperCase(), command);
+//    }
+//
+//    public void addCommand(AutoSpreadsheetCommandGroup command)
+//    {
+//        commandTable.put(command.getName().toUpperCase(), command);
+//    }
+//    
+//    public void addCommand(String commandName)
+//    {
+//    	try {
+//			Object command = Class.forName(commandPackage + "." + commandName).newInstance();
+//			if ((command instanceof AutoSpreadsheetCommand) || (command instanceof AutoSpreadsheetCommandGroup))
+//			{
+//				commandTable.put(commandName.toUpperCase(), (Command)command);
+//			}
+//			else
+//			{
+//				System.err.println(command.toString() + " is not an instance of AutospreadsheetCommand or AutoSpreadsheetCommandGroup");
+//			}
+//		} catch (ClassNotFoundException e) {
+//			System.err.println("Can not find command: " + commandName + " in package: " + commandPackage);
+//			e.printStackTrace();
+//		} catch (InstantiationException e) {
+//			System.err.println("Could not instantiate command: " + commandName + " in package: " + commandPackage);
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			System.err.println("Could not access command: " + commandName + " in package: " + commandPackage);
+//			e.printStackTrace();
+//		} 
+//    }
 
 
     public CommandGroup getSelected() {
         checkForChange();
-        if (autoChooser.getSelected() instanceof MarsRock)
-        {
-            CommandGroup cg = new CommandGroup();
-            cg.addSequential(new MarsRock());
-            return (CommandGroup)cg;
-        }
-        else if (currentCommandGroup != null)
+        if (currentCommandGroup != null)
             return currentCommandGroup;
         else
             return buildScript((String)autoChooser.getSelected());
@@ -122,14 +148,11 @@ public class AutoSpreadsheet {
     public void readScripts()
     {
         try {
-            file = (FileConnection) Connector.open(filename, Connector.READ);
-            reader = new BufferedReader(new InputStreamReader(file.openInputStream()));
+            reader = new BufferedReader(new FileReader(filename));
            
             String line;
             String scriptName = null;
             int comma1, comma2;
-            boolean scriptStarted = false;
-                        
             while ((line = reader.readLine()) != null)
             {
 //                System.out.println(line);
@@ -139,7 +162,6 @@ public class AutoSpreadsheet {
                     comma2 = line.substring(comma1+1).indexOf(",")+comma1+1;
                     scriptName = line.substring(comma1+1,comma2).toUpperCase().trim();
                     System.out.println("Found Script: " + scriptName);
-                    scriptStarted = true;
                     autoChooser.addObject(scriptName, scriptName);
                 }
                 else if (line.toUpperCase().startsWith("END_OF_SPREAD_SHEET,"))
@@ -156,7 +178,7 @@ public class AutoSpreadsheet {
         finally
         {
             try {
-                file.close();
+                reader.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -169,8 +191,7 @@ public class AutoSpreadsheet {
     {
         CommandGroup cg = null;
         try {
-            file = (FileConnection) Connector.open(filename, Connector.READ);
-            reader = new BufferedReader(new InputStreamReader(file.openInputStream()));
+            reader = new BufferedReader(new FileReader(filename));
            
             String line;
             String scriptName = null;
@@ -293,41 +314,86 @@ public class AutoSpreadsheet {
                             param3 = 0;
                         }                       
                         
-                        command = (Command)commandTable.get(commandName.toUpperCase());
+                    	try {
+                			Object commandClass = Class.forName(commandPackage + "." + commandName).newInstance();
+                			if ((commandClass instanceof AutoSpreadsheetCommand) || (commandClass instanceof CommandGroup))
+                			{
+                				command = (Command)commandClass;
+                				if (command instanceof AutoSpreadsheetCommand)
+                                {
+                                    System.out.println("Found Command: " + command.getName());
+//                                    command = ((AutoSpreadsheetCommand)command).copy();
+                                    ((AutoSpreadsheetCommand)command).setStopAtEnd(stop);
+                                    ((AutoSpreadsheetCommand)command).setParam1(param1);
+                                    ((AutoSpreadsheetCommand)command).setParam2(param2);
+                                    ((AutoSpreadsheetCommand)command).setParam3(param3);
+                                    (command).setTimeout(timeout);
+                                    if (sequential)   
+                                        cg.addSequential(command);
+                                    else
+                                        cg.addParallel(command);
+                                    
+                                }
+                                else if (command instanceof CommandGroup)
+                                {
+                                    System.out.println("Found Command Group: " + command.getName());
+//                                    command = ((AutoSpreadsheetCommandGroup)command).copy();
+                                    if (sequential)   
+                                        cg.addSequential(command);
+                                    else
+                                        cg.addParallel(command);
+                                }
+                			}
+                			else
+                			{
+                				System.err.println(commandClass.toString() + " is not an instance of AutospreadsheetCommand or AutoSpreadsheetCommandGroup");
+                			}
+                		} catch (ClassNotFoundException e) {
+                			System.err.println("Can not find command: " + commandName + " in package: " + commandPackage);
+                			e.printStackTrace();
+                		} catch (InstantiationException e) {
+                			System.err.println("Could not instantiate command: " + commandName + " in package: " + commandPackage);
+                			e.printStackTrace();
+                		} catch (IllegalAccessException e) {
+                			System.err.println("Could not access command: " + commandName + " in package: " + commandPackage);
+                			e.printStackTrace();
+                		} 
+                        
+//                        command = (Command)commandTable.get(commandName.toUpperCase());
                        
                         
-                        if (command == null)
-                        {
-                            System.err.println("Could not find command: " + commandName);
-                        }
-                        else if (command instanceof AutoSpreadsheetCommand)
-                        {
-                            System.out.println("Found Command: " + command.getName());
-                            command = ((AutoSpreadsheetCommand)command).copy();
-                            ((AutoSpreadsheetCommand)command).setStopAtEnd(stop);
-                            ((AutoSpreadsheetCommand)command).setParam1(param1);
-                            ((AutoSpreadsheetCommand)command).setParam2(param2);
-                            ((AutoSpreadsheetCommand)command).setParam3(param3);
-                            (command).setTimeout(timeout);
-                            if (sequential)   
-                                cg.addSequential(command);
-                            else
-                                cg.addParallel(command);
-                            
-                        }
-                        else if (command instanceof AutoSpreadsheetCommandGroup)
-                        {
-                            System.out.println("Found Command Group: " + command.getName());
-                            command = ((AutoSpreadsheetCommandGroup)command).copy();
-                            if (sequential)   
-                                cg.addSequential(command);
-                            else
-                                cg.addParallel(command);
-                        }
-                        else
-                        {
-                            System.err.println(commandName + " (" + command.getName() + ") is not instance of AutoSpreadsheetCommand");
-                        }
+//                        if (command == null)
+//                        {
+//                            System.err.println("Could not find command: " + commandName);
+//                        }
+//                        else if (command instanceof AutoSpreadsheetCommand)
+//                        {
+//                            System.out.println("Found Command: " + command.getName());
+//                            command = ((AutoSpreadsheetCommand)command).copy();
+//                            ((AutoSpreadsheetCommand)command).setStopAtEnd(stop);
+//                            ((AutoSpreadsheetCommand)command).setParam1(param1);
+//                            ((AutoSpreadsheetCommand)command).setParam2(param2);
+//                            ((AutoSpreadsheetCommand)command).setParam3(param3);
+//                            (command).setTimeout(timeout);
+//                            if (sequential)   
+//                                cg.addSequential(command);
+//                            else
+//                                cg.addParallel(command);
+//                            
+//                        }
+//                        else if (command instanceof AutoSpreadsheetCommandGroup)
+//                        {
+//                            System.out.println("Found Command Group: " + command.getName());
+//                            command = ((AutoSpreadsheetCommandGroup)command).copy();
+//                            if (sequential)   
+//                                cg.addSequential(command);
+//                            else
+//                                cg.addParallel(command);
+//                        }
+//                        else
+//                        {
+//                            System.err.println(commandName + " (" + command.getName() + ") is not instance of AutoSpreadsheetCommand");
+//                        }
 
                         
 //                        System.out.println("Command: " + commandName + " Timeout: " + timeout + " Continue: " + !stop + " Param1: " + param1 + " Param2: " + param2 + " Param3: " + param3);
@@ -341,7 +407,7 @@ public class AutoSpreadsheet {
         finally
         {
             try {
-                file.close();
+                reader.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
