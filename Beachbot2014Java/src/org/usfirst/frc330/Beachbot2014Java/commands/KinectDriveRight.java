@@ -31,7 +31,8 @@ public class  KinectDriveRight extends Command implements AutoSpreadsheetCommand
     double rightspeed = Robot.chassis.getKinectDriveRightSpeed();
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        delta = Robot.oi.getLeftKinectJoystick().getY() - Robot.oi.getRightKinectJoystick().getY();
+        //delta = Robot.oi.getLeftKinectJoystick().getY() - Robot.oi.getRightKinectJoystick().getY();
+        delta = 0; //TODO: reimplement
         Robot.chassis.tankDrive(delta*rightspeed, delta/rightspeed);
     }
     // Make this return true when this Command no longer needs to run execute()

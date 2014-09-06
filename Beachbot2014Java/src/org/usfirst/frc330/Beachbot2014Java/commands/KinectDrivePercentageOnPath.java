@@ -34,8 +34,9 @@ public class KinectDrivePercentageOnPath extends DriveWaypoint {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         double prevAngle;
-        delta = (Robot.oi.getRightKinectJoystick().getY() - Robot.oi.getLeftKinectJoystick().getY())/2;
-
+        //delta = (Robot.oi.getRightKinectJoystick().getY() - Robot.oi.getLeftKinectJoystick().getY())/2;
+        delta = 0; //TODO: reimplement
+        
         if (Math.abs(delta - prevDelta) > 0.02)
         {
             System.out.println("delta: " + delta + " prevDelta: " + prevDelta);            

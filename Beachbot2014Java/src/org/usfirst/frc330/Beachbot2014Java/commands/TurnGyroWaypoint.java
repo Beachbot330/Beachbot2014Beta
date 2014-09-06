@@ -4,7 +4,6 @@
  */
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
-import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
@@ -70,7 +69,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         deltaX = x - curX;
         deltaY = y - curY;
         
-        calcAngle = Math.toDegrees(MathUtils.atan2(deltaX, deltaY));
+        calcAngle = Math.toDegrees(Math.atan2(deltaX, deltaY));
         
         if (Double.isNaN(calcAngle) || Double.isInfinite(calcAngle))
         {
