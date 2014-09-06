@@ -21,6 +21,10 @@ public class CommandGroupUpdateable extends CommandGroup {
         this.removeAllCommands();
         super.initialize(); //To change body of generated methods, choose Tools | Templates.
     }
+
+	protected void removeAllCommands() {
+		this.m_children.removeAllElements();
+	}
     
     
     
