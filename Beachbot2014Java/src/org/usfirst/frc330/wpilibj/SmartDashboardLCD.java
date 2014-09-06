@@ -5,7 +5,7 @@
 package org.usfirst.frc330.wpilibj;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.SPIDevice;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.wpilibj.LCDInterface.Line;
 /*

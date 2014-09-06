@@ -4,7 +4,7 @@
  */
 package org.usfirst.frc330.wpilibj;
 
-import edu.wpi.first.wpilibj.SPIDevice;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.*;
 /*
  * $Log: CFA634SPI.java,v $
@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.*;
  */
 public class CFA634SPI extends LCDInterface {
 
-    private SPIDevice spi = null;
+    private SPI spi = null;
     
 
     /**
@@ -31,7 +31,7 @@ public class CFA634SPI extends LCDInterface {
      * @param csChannel	The channel for the digital output for the device's chip select pin
      */
     public CFA634SPI(int slot, int csChannel) {
-        spi = new SPIDevice(slot, csChannel, SPIDevice.CS_ACTIVE_LOW);
+        spi = new SPI(slot, csChannel, SPI.CS_ACTIVE_LOW);
         setSPIParams();
     }
     
@@ -42,26 +42,26 @@ public class CFA634SPI extends LCDInterface {
      * @param cs	The digital output for the device's chip select pin
      */
     public CFA634SPI(DigitalOutput cs) {
-        spi = new SPIDevice(cs, SPIDevice.CS_ACTIVE_LOW);
+        spi = new SPI(cs, SPI.CS_ACTIVE_LOW);
         setSPIParams();
     }
     
     public CFA634SPI(DigitalOutput clk, DigitalOutput mosi, DigitalInput miso, DigitalOutput cs)
     {
-        spi = new SPIDevice(clk, mosi, miso, cs, SPIDevice.CS_ACTIVE_LOW);
+        spi = new SPI(clk, mosi, miso, cs, SPI.CS_ACTIVE_LOW);
         setSPIParams();
     }
     
     public CFA634SPI(int slot, int clkChannel, int mosiChannel, int misoChannel, int csChannel) {
-        spi = new SPIDevice(slot, clkChannel, mosiChannel, misoChannel, csChannel, SPIDevice.CS_ACTIVE_LOW);
+        spi = new SPI(slot, clkChannel, mosiChannel, misoChannel, csChannel, SPI.CS_ACTIVE_LOW);
         setSPIParams();
     }
     
     private void setSPIParams() {
-        spi.setBitOrder(SPIDevice.BIT_ORDER_MSB_FIRST);
-        spi.setClockPolarity(SPIDevice.CLOCK_POLARITY_ACTIVE_LOW);
-        spi.setDataOnTrailing(SPIDevice.DATA_ON_TRAILING_EDGE);
-        spi.setFrameMode(SPIDevice.FRAME_MODE_CHIP_SELECT);
+        spi.setBitOrder(SPI.BIT_ORDER_MSB_FIRST);
+        spi.setClockPolarity(SPI.CLOCK_POLARITY_ACTIVE_LOW);
+        spi.setDataOnTrailing(SPI.DATA_ON_TRAILING_EDGE);
+        spi.setFrameMode(SPI.FRAME_MODE_CHIP_SELECT);
 
         spi.setClockRate(8000);
     }
