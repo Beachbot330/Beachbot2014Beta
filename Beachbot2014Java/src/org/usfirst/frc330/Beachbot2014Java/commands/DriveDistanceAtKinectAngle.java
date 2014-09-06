@@ -45,20 +45,21 @@ public class  DriveDistanceAtKinectAngle extends DriveDistance{
         {
             Robot.chassis.gyroPID.setGainName(Chassis.DRIVEHIGH);
         }
-        if (Robot.oi.getLeftKinectJoystick().getY() > Robot.oi.getRightKinectJoystick().getY())
+        //if (Robot.oi.getLeftKinectJoystick().getY() > Robot.oi.getRightKinectJoystick().getY())
+        if(true)
         {
             direction = 1;
             System.out.println("LEFT KINECT");
-            System.out.println("Joystick Left angle: " + 
-                    Robot.oi.getLeftKinectJoystick().getY() + "Joystick Right angle: " + Robot.oi.getRightKinectJoystick().getY());
+            System.out.println("Joystick Left angle: Disabled");
+                    //Robot.oi.getLeftKinectJoystick().getY() + "Joystick Right angle: " + Robot.oi.getRightKinectJoystick().getY());
         }
-        else
+/*        else
         {
             direction = -1;
             System.out.println("RIGHT KINECT");
             System.out.println("Joystick Left angle: " + 
                     Robot.oi.getLeftKinectJoystick().getY() + "Joystick Right angle: " + Robot.oi.getRightKinectJoystick().getY());
-        }
+        }*/
         angle = angle*direction;
         System.out.println("Angle: " + angle);
         Robot.chassis.gyroPID.setSetpoint(angle);

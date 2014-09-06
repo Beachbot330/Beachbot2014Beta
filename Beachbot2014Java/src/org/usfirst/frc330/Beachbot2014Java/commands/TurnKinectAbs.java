@@ -37,7 +37,8 @@ public class TurnKinectAbs extends TurnGyroAbs {
     double direction;
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.oi.getLeftKinectJoystick().getY() > Robot.oi.getRightKinectJoystick().getY())
+        //if (Robot.oi.getLeftKinectJoystick().getY() > Robot.oi.getRightKinectJoystick().getY())
+    	if (true)  //TODO: reimplement
             direction = 1;
         else
             direction = -1;
