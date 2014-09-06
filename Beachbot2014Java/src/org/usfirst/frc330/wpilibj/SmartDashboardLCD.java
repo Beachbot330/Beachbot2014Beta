@@ -51,10 +51,10 @@ public class SmartDashboardLCD {
     public void updateLCD()
     {
 
-        lcd.println(CFA634SPI.Line.kUser1, 15, getDisplayValue(SmartDashboard.getNumber(lines[0], 0)));
-        lcd.println(CFA634SPI.Line.kUser2, 15, getDisplayValue(SmartDashboard.getNumber(lines[1], 0)));
-        lcd.println(CFA634SPI.Line.kUser3, 15, getDisplayValue(SmartDashboard.getNumber(lines[2], 0)));
-        lcd.println(CFA634SPI.Line.kUser4, 15, getDisplayValue(SmartDashboard.getNumber(lines[3], 0)));
+        lcd.println(Line.kUser1, 15, getDisplayValue(SmartDashboard.getNumber(lines[0], 0)));
+        lcd.println(Line.kUser2, 15, getDisplayValue(SmartDashboard.getNumber(lines[1], 0)));
+        lcd.println(Line.kUser3, 15, getDisplayValue(SmartDashboard.getNumber(lines[2], 0)));
+        lcd.println(Line.kUser4, 15, getDisplayValue(SmartDashboard.getNumber(lines[3], 0)));
 
         
     }

@@ -50,19 +50,19 @@ public abstract class LCDInterface {
         /**
          * Line at the Top of the screen
 	 */
-	public static final CFA634SPI.Line kUser1 = new CFA634SPI.Line(kUser1_val);
+	public static final Line kUser1 = new Line(kUser1_val);
         /**
          * Line on the user screen
          */
-        public static final CFA634SPI.Line kUser2 = new CFA634SPI.Line(kUser2_val);
+        public static final Line kUser2 = new Line(kUser2_val);
         /**
          * Line on the user screen
          */
-        public static final CFA634SPI.Line kUser3 = new CFA634SPI.Line(kUser3_val);
+        public static final Line kUser3 = new Line(kUser3_val);
         /**
          * Line on the user screen
          */
-        public static final CFA634SPI.Line kUser4 = new CFA634SPI.Line(kUser4_val);
+        public static final Line kUser4 = new Line(kUser4_val);
 
 
         private Line(int value) {
