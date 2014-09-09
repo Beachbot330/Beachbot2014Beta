@@ -108,7 +108,7 @@ public class RobotMap {
         shooterShooter4 = new Solenoid(0, 3);
 	LiveWindow.addActuator("Shooter", "Shooter4", shooterShooter4);
         
-        shooterShooterUltrasonic = new AnalogInput(3);
+        shooterShooterUltrasonic = new AnalogInput(4);
 	LiveWindow.addSensor("Shooter", "ShooterUltrasonic", shooterShooterUltrasonic);
         
         wingsWingSolenoid = new DoubleSolenoid(0, 6, 7);      

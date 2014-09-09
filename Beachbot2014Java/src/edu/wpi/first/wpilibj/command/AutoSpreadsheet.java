@@ -97,7 +97,7 @@ public class AutoSpreadsheet {
     
     public AutoSpreadsheet()
     {
-    	this("2014AutoModesJava.csv", "org.usfirst.frc.team330.robot.commands");
+    	this("/home/lvuser/2014AutoModesJava.csv", "org.usfirst.frc330.Beachbot2014Java.commands");
     }
     
 //    private Hashtable<String,Command> commandTable = new Hashtable<String, Command>();

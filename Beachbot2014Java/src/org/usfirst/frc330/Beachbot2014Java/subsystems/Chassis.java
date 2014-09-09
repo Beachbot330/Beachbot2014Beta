@@ -26,7 +26,7 @@ public class Chassis extends Subsystem implements PIDSource {
     SpeedController rightDrive1 = RobotMap.chassisRightDrive1;
     SpeedController rightDrive2 = RobotMap.chassisRightDrive2;
     SpeedController rightDrive3 = RobotMap.chassisRightDrive3;
-    Compressor compressor = RobotMap.chassisCompressor;
+    //Compressor compressor = RobotMap.chassisCompressor;
     Relay shiftSpike = RobotMap.chassisShiftSpike;
     Encoder leftDriveEncoder = RobotMap.chassisLeftDriveEncoder;
     Encoder rightDriveEncoder = RobotMap.chassisRightDriveEncoder;
@@ -55,7 +55,7 @@ public class Chassis extends Subsystem implements PIDSource {
     }
     
     public Chassis (){ 
-        compressor.start();
+        //compressor.start();
         
         gyroOutput = new DummyPIDOutput();
         leftDriveOutput = new DummyPIDOutput();
