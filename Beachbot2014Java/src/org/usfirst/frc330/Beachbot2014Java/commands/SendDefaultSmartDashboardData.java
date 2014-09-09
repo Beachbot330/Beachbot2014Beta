@@ -43,11 +43,16 @@ public class  SendDefaultSmartDashboardData extends Command {
     double encoderLeft = 0;
     double encoderRight = 0;
     double shooterDistance = 0;
+    double pressureGauge = 0;
     boolean ballInPickup = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (count % 10 == 0)
         {
+        	if (pressureGauge != Robot.chassis.getPressureGauge()) {
+        		pressureGauge = Robot.chassis.getPressureGauge();
+        		SmartDashboard.putNumber("PressureGauge", pressureGauge);
+        	}
             if (pickupCurrent != Robot.pickup.getCurrent()) {
                 pickupCurrent = Robot.pickup.getCurrent();
                 SmartDashboard.putNumber("PickupCurrent", pickupCurrent);
