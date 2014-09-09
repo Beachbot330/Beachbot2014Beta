@@ -8,9 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
-import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
  *
  */
@@ -37,9 +35,5 @@ public class DriveDistanceAtRelAngleWAccel extends DriveDistanceAtAngleWAccel {
         super.end(); //To change body of generated methods, choose Tools | Templates.
         leftDistance = origDistance;
         rightDistance = origDistance;
-    }
-
-    public Command copy() {
-        return new DriveDistanceAtRelAngleWAccel();
     }
 }

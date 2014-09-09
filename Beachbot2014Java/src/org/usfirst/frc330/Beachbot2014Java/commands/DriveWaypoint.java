@@ -4,8 +4,6 @@
  */
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
-import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /*
  * This will drive the robot forwards to a waypoint on the field based on its 
@@ -104,10 +102,6 @@ public class DriveWaypoint extends DriveDistanceAtRelAngleWAccel {
         
         super.setParam1(calcDistance);
         super.setParam3(calcAngle);
-    }
-    
-    public Command copy() {
-        return new DriveWaypoint(0,0,0,0,false);
     }
 
 }

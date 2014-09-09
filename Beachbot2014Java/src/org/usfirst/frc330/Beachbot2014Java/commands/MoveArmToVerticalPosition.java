@@ -8,26 +8,12 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  MoveArmToVerticalPosition extends  MoveArmCommand implements AutoSpreadsheetCommand {
+public class  MoveArmToVerticalPosition extends  MoveArmCommand {
     public MoveArmToVerticalPosition() {
         super(Robot.arm.getArmVertical());
-    }
-    public void setParam1(double param1) {
-    }
-    public void setParam2(double param2) {
-    }
-    public void setParam3(double param3) {
-    }
-    public void setStopAtEnd(boolean stopAtEnd) {
-    }
-    public Command copy() {
-        return new MoveArmToVerticalPosition();
     }
 }

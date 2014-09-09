@@ -8,9 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
-import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
  *
  */
@@ -59,9 +57,5 @@ public class  DriveDistanceAccel extends DriveDistance{
         }
         Robot.chassis.leftDrivePID.setOutputRange(-maxoutput, maxoutput);
         Robot.chassis.rightDrivePID.setOutputRange(-maxoutput, maxoutput);
-    }
-    
-    public Command copy() {
-        return new DriveDistanceAccel(0);
     }
 }

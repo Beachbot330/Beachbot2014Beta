@@ -6,9 +6,9 @@
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * If the Kinect arms are to the left, execute the DriveWaypoint command, otherwise return quickly.
@@ -21,9 +21,6 @@ public class DriveKinectWaypointLeft extends DriveWaypoint {
         super(x, y, tolerance, timeout, stopAtEnd);
     }
 
-    public Command copy() {
-        return new DriveKinectWaypointLeft(0,0,0,0,false);
-    }
     boolean quit = false;
     double offset = 0;
     protected void initialize() {

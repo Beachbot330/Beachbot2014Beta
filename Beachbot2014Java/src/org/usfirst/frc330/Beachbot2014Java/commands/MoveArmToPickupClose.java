@@ -8,13 +8,11 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  MoveArmToPickupClose extends MoveArmCommand implements AutoSpreadsheetCommand {
+public class  MoveArmToPickupClose extends MoveArmCommand {
     public MoveArmToPickupClose() {
         super(0);
     }
@@ -25,16 +23,5 @@ public class  MoveArmToPickupClose extends MoveArmCommand implements AutoSpreads
         else
             setpoint = Robot.arm.getArmBackPickup();
         super.initialize();
-    }
-    public void setParam1(double param1) {
-    }
-    public void setParam2(double param2) {
-    }
-    public void setParam3(double param3) {
-    }
-    public void setStopAtEnd(boolean stopAtEnd) {
-    }
-    public Command copy() {
-        return new MoveArmToPickupClose();
     }
 }

@@ -125,7 +125,4 @@ public class  DriveDistance extends Command implements AutoSpreadsheetCommand {
     public void setStopAtEnd(boolean stopAtEnd) {
         this.stopAtEnd = stopAtEnd;
     }
-    public Command copy() {
-        return new DriveDistance();
-    }
 }

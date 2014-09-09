@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
@@ -49,9 +48,5 @@ public class  DriveDistanceAtAngle extends DriveDistance{
     
     public void setParam3(double angle) {
         this.angle = angle;
-    }
-
-    public Command copy() {
-        return new DriveDistanceAtAngle();
     }
 }

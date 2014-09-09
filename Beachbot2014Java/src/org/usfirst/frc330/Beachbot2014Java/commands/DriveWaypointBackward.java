@@ -4,7 +4,6 @@
  */
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /*
  * This will drive the robot forwards to a waypoint on the field based on its 
@@ -32,9 +31,4 @@ public class DriveWaypointBackward extends DriveWaypoint {
             angle = angle+180;
 //        System.out.println("Backward Angle: " + angle);
     }
-
-    public Command copy() {
-        return new DriveWaypointBackward(0,0,0,0,true);
-    }
-    
 }

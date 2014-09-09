@@ -10,9 +10,9 @@
 
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.CommandGroupUpdateable;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
+
+import edu.wpi.first.wpilibj.command.CommandGroupUpdateable;
 
 /**
  *

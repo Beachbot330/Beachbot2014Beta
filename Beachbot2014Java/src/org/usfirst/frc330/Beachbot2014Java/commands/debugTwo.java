@@ -9,7 +9,6 @@
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */

@@ -10,14 +10,12 @@
 
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoPickupClosePulse extends CommandGroup implements AutoSpreadsheetCommand{
+public class AutoPickupClosePulse extends CommandGroup {
     
     public  AutoPickupClosePulse() {
         // Add Commands here:
@@ -38,21 +36,6 @@ public class AutoPickupClosePulse extends CommandGroup implements AutoSpreadshee
         // arm.
         addSequential(new MoveArmToPickupClose());
         addParallel(new PickupPulse());
-    }
-    public void setParam1(double param1) {
-    }
-
-    public void setParam2(double param2) {
-    }
-
-    public void setParam3(double param3) {
-    }
-
-    public void setStopAtEnd(boolean stopAtEnd) {
-    }
-
-    public Command copy() {
-        return new AutoPickupClosePulse();
     }
 
     protected boolean isFinished() {

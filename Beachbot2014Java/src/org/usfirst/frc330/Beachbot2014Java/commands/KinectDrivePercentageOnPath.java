@@ -23,8 +23,6 @@ public class KinectDrivePercentageOnPath extends DriveWaypoint {
         this.y = 0;
         prevDelta = 3;
     }
-    
-
 
     // Called just before this Command runs the first time
     protected void initialize() {
