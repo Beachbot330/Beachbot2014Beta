@@ -10,8 +10,10 @@
 package org.usfirst.frc330.Beachbot2014Java.subsystems;
 import org.usfirst.frc330.Beachbot2014Java.RobotMap;
 import org.usfirst.frc330.Beachbot2014Java.commands.*;
+
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
@@ -75,6 +77,11 @@ public class Pickup extends Subsystem {
     
     public double getCurrent() {
         return Math.abs(73.3*currentSensor.getAverageVoltage()/5.0-36.7);
+    }
+    
+    public double getPDPCurrent() {
+    	System.out.println("Pickup Current PDP: " + Robot.pdp.getCurrent(11));
+    	return Robot.pdp.getCurrent(11);
     }
     
     public double getCurrentSensorVoltage() {

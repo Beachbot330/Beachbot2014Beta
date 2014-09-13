@@ -45,6 +45,7 @@ public class  SendDefaultSmartDashboardData extends Command {
     double shooterDistance = 0;
     double pressureGauge = 0;
     boolean ballInPickup = false;
+    double pickupCurrentPDP = 0;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (count % 10 == 0)
@@ -88,6 +89,10 @@ public class  SendDefaultSmartDashboardData extends Command {
             if (ballInPickup != Robot.pickup.isBallInPickup()) {
                 ballInPickup = Robot.pickup.isBallInPickup();
                 SmartDashboard.putBoolean("BallInPickup", ballInPickup);
+            }
+            if (pickupCurrentPDP != Robot.pickup.getPDPCurrent()) {
+            	pickupCurrentPDP = Robot.pickup.getPDPCurrent();
+            	SmartDashboard.putNumber("PickupCurrentPDP", pickupCurrentPDP);
             }
         }
         count++;
