@@ -37,7 +37,7 @@ public class BackgroundCalibratingGyro extends Gyro {
      * in progress, this is typically done when the robot is first turned on while it's sitting at
      * rest before the competition starts.
      */
-    protected void initGyro() {
+    public void initGyro() {
         calibratingResult = new AccumulatorResult[kCalibrateSeconds];
         prevCalibratingResult = new AccumulatorResult[kCalibrateSeconds];
         for (int i=0;i<kCalibrateSeconds; i++) {
