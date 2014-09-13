@@ -28,7 +28,6 @@ public class RobotMap {
     public static SpeedController chassisRightDrive1;
     public static SpeedController chassisRightDrive2;
     public static SpeedController chassisRightDrive3;
-    public static Compressor chassisCompressor;
     public static Relay chassisShiftSpike;
     public static Encoder chassisLeftDriveEncoder;
     public static Encoder chassisRightDriveEncoder;
