@@ -80,7 +80,7 @@ public class Pickup extends Subsystem {
     }
     
     public double getPDPCurrent() {
-    	System.out.println("Pickup Current PDP: " + Robot.pdp.getCurrent(11));
+//    	System.out.println("Pickup Current PDP: " + Robot.pdp.getCurrent(11));
     	return Robot.pdp.getCurrent(11);
     }
     
