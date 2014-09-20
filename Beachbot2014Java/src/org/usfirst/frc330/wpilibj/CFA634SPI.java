@@ -29,8 +29,7 @@ public class CFA634SPI extends LCDInterface {
     /**
      * Create a new device on the SPI bus.<br>The chip select line is active low
      *
-     * @param slot The module of the digital output for the device's chip select pin
-     * @param csChannel	The channel for the digital output for the device's chip select pin
+     * @param port The SPI.Port the CFA634 is connected to.
      */
     public CFA634SPI(SPI.Port port) {
         spi = new SPI(port);
