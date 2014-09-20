@@ -15,7 +15,9 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
  * Does nothing for a commanded amount of time. 
  */
 public class  Wait extends Command implements AutoSpreadsheetCommand {
-    public Wait(double timeout) {
+    public Wait() {}
+    
+	public Wait(double timeout) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
