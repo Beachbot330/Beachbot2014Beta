@@ -24,6 +24,7 @@ public class CommandGroupUpdateable extends CommandGroup {
 
 	protected void removeAllCommands() {
 		this.m_children.removeAllElements();
+		this.m_commands.removeAllElements();
 	}
     
     
