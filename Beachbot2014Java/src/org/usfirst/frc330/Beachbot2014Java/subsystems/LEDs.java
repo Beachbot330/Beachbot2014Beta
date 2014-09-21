@@ -58,7 +58,7 @@ public class LEDs extends Subsystem {
             receivedData[2] = (byte)((data & 0x0000FF00) >> 8);
             receivedData[3] = (byte)((data & 0x000000FF));
             System.out.println("ReceivedData: " + data + " " + receivedData[0] + " " + receivedData[1] + " " + receivedData[2] + " " + receivedData[3]);
-            arduino.transaction(receivedData, receivedData.length, null, 0);
+// TODO: LED's            arduino.transaction(receivedData, receivedData.length, null, 0);
             SmartDashboard.putNumber("Arduino/Value",0);
             if (receivedData[0] == 1) {
 //                prevData = (byte[]) receivedData.clone();
@@ -75,7 +75,7 @@ public class LEDs extends Subsystem {
         receivedData[1] = -1;
         receivedData[2] = 0;
         receivedData[3] = 0;
-        arduino.transaction(receivedData, receivedData.length, null, 0);
+// TODO: LED's        arduino.transaction(receivedData, receivedData.length, null, 0);
     }
     
     public void setGreen() {
@@ -84,7 +84,7 @@ public class LEDs extends Subsystem {
         receivedData[2] = -1;
         receivedData[3] = 0;
 //        System.out.println("Green before Transaction");
-        arduino.transaction(receivedData, receivedData.length, null, 0);
+// TODO: LED's        arduino.transaction(receivedData, receivedData.length, null, 0);
 //        System.out.println("Green after Transaction");
     }
     
@@ -94,13 +94,13 @@ public class LEDs extends Subsystem {
         receivedData[2] = 0;
         receivedData[3] = -1;
 //        System.out.println("Green before Transaction");
-        arduino.transaction(receivedData, receivedData.length, null, 0);
+// TODO: LED's        arduino.transaction(receivedData, receivedData.length, null, 0);
 //        System.out.println("Green after Transaction");
     }
     
         public void restorePrevious() {
 //        System.out.println("RestorePrevious before Transaction");
-        arduino.transaction(prevData, prevData.length, null, 0);
+// TODO: LED's        arduino.transaction(prevData, prevData.length, null, 0);
 //        System.out.println("RestorePrevious after Transaction");        
     }
 }

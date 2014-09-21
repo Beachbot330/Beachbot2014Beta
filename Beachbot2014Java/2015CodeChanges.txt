@@ -9,3 +9,4 @@ JD: SmartDashboardLCD.java - renamed import edu.wpi.first.wpilibj.SPIDevice to .
 AP: Remove com.sun.squawk.util.MathUtils
 JR: Use standard java file IO instead of Java ME file IO
 JR: Update CFA634SPI to new SPI API.
+JD: Replaced Analog Current Sensor with PDP current sensor. Removed LED call to arduino transaction - caused crash

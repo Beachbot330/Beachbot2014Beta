@@ -316,7 +316,7 @@ public class AutoSpreadsheet {
                         
                     	try {
                 			Object commandClass = Class.forName(commandPackage + "." + commandName).newInstance();
-                			if ((commandClass instanceof AutoSpreadsheetCommand) || (commandClass instanceof CommandGroup))
+                			if ((commandClass instanceof AutoSpreadsheetCommand) || (commandClass instanceof CommandGroup) || (commandClass instanceof Command))
                 			{
                 				command = (Command)commandClass;
                 				if (command instanceof AutoSpreadsheetCommand)
@@ -343,10 +343,19 @@ public class AutoSpreadsheet {
                                     else
                                         cg.addParallel(command);
                                 }
+                                else if (command instanceof Command)
+                                {
+                                    System.out.println("Found Command: " + command.getName());
+//                                  command = ((AutoSpreadsheetCommandGroup)command).copy();
+                                  if (sequential)   
+                                      cg.addSequential(command);
+                                  else
+                                      cg.addParallel(command);
+                                }
                 			}
-                			else
+               			else
                 			{
-                				System.err.println(commandClass.toString() + " is not an instance of AutospreadsheetCommand or AutoSpreadsheetCommandGroup");
+                				System.err.println(commandClass.toString() + " is not an instance of AutospreadsheetCommand or CommandGroup or Command");
                 			}
                 		} catch (ClassNotFoundException e) {
                 			System.err.println("Can not find command: " + commandName + " in package: " + commandPackage);

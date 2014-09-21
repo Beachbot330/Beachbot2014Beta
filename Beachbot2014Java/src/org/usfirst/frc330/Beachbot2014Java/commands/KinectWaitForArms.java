@@ -13,7 +13,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Does nothing for a commanded amount of time. 
  */
+
 public class  KinectWaitForArms extends Command {
+	public KinectWaitForArms() {
+		setTimeout(15);
+	}
+	
     public KinectWaitForArms(double timeout) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
