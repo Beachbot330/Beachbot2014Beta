@@ -97,7 +97,7 @@ public class Robot extends IterativeRobot {
         autonomousCommand = auto.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
-        System.out.println(autonomousCommand.getName());
+        System.out.println("Running Auto: " + autonomousCommand.getName());
     }
     /**
      * This function is called periodically during autonomous

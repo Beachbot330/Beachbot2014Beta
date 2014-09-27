@@ -321,7 +321,7 @@ public class AutoSpreadsheet {
                 				command = (Command)commandClass;
                 				if (command instanceof AutoSpreadsheetCommand)
                                 {
-                                    System.out.println("Found Command: " + command.getName());
+                                    System.out.println("Found AutoSpreadsheetCommand: " + command.getName());
 //                                    command = ((AutoSpreadsheetCommand)command).copy();
                                     ((AutoSpreadsheetCommand)command).setStopAtEnd(stop);
                                     ((AutoSpreadsheetCommand)command).setParam1(param1);
