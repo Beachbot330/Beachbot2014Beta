@@ -11,6 +11,7 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
  */
 public class DriveWaypoint extends DriveDistanceAtRelAngleWAccel {
     double x,y;
+    public DriveWaypoint() {}
     public DriveWaypoint(double x, double y, double tolerance, double timeout, boolean stopAtEnd) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
