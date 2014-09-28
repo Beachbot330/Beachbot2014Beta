@@ -9,6 +9,13 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
@@ -45,6 +52,7 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    BufferedWriter writer = null;
     private static boolean practicerobot;
     public static boolean isPracticerobot() {
         return practicerobot;
@@ -77,6 +85,15 @@ public class Robot extends IterativeRobot {
 	    auto = new AutoSpreadsheet();
         auto.readScripts();
         
+        Random random = new Random();
+        
+        try {
+			writer = new BufferedWriter(new FileWriter("/home/lvuser/pdp" + random.nextInt() + ".csv"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         
         SmartDashboard.putNumber("KinectRightOffset", 0);
         SmartDashboard.putNumber("KinectLeftOffset", 0);
@@ -98,6 +115,13 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
         System.out.println("Running Auto: " + autonomousCommand.getName());
+        try {
+			writer.write("Auto");
+			writer.newLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     /**
      * This function is called periodically during autonomous
@@ -107,6 +131,12 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         chassis.calcPeriodic();
         pickup.calcPeriodic();
+        try {
+			getPDPdata();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     public void teleopInit() {
         RobotMap.chassisGyro.startGyro();
@@ -115,6 +145,14 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        try {
+			writer.write("Teleop");
+			writer.newLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
     /**
      * This function is called periodically during operator control
@@ -123,6 +161,12 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         chassis.calcPeriodic();
         pickup.calcPeriodic();
+        try {
+			getPDPdata();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     /**
      * This function called periodically during test mode
@@ -153,6 +197,36 @@ public class Robot extends IterativeRobot {
         Robot.chassis.stopDrive();     
         Robot.arm.stopArm();
         Robot.pickup.setPickupMotorOff();
+        try {
+			writer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
     }    
+    double pdpArray[][] = new double[100][18];
+    int pdpLine = 0;
+    
+    private void getPDPdata() throws IOException {
+    	for (int i=0; i<16; i++) {
+    		pdpArray[pdpLine][i] = pdp.getCurrent(i);
+    	}
+    	pdpArray[pdpLine][16] = pdp.getVoltage();
+    	pdpArray[pdpLine][17] = pdp.getTemperature();
+    	if (pdpLine == 99) {
+    		for (int j=0; j<100; j++) {
+	    		for (int i=0; i<18; i++) {
+	    			writer.write(pdpArray[j][i] + ",");
+	    		}
+	    		writer.newLine();
+    		}
+    	} 	
+    	
+    	if (pdpLine >=99)
+    		pdpLine = 0;
+    	else
+    		pdpLine++;
+    }
+    
 }
