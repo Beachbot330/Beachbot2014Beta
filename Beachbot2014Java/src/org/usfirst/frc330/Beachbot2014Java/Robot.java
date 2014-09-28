@@ -9,13 +9,21 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
+import org.usfirst.frc330.Beachbot2014Java.commands.AutonomousCommand;
+import org.usfirst.frc330.Beachbot2014Java.subsystems.Arm;
+import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
+import org.usfirst.frc330.Beachbot2014Java.subsystems.LEDs;
+import org.usfirst.frc330.Beachbot2014Java.subsystems.Pickup;
+import org.usfirst.frc330.Beachbot2014Java.subsystems.Shooter;
+import org.usfirst.frc330.Beachbot2014Java.subsystems.SmartDashboardSender;
+import org.usfirst.frc330.Beachbot2014Java.subsystems.Wings;
+
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
@@ -24,9 +32,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc330.Beachbot2014Java.commands.*;
-import org.usfirst.frc330.Beachbot2014Java.subsystems.*;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -205,7 +210,7 @@ public class Robot extends IterativeRobot {
 		}
         
     }    
-    double pdpArray[][] = new double[100][18];
+    double pdpArray[][] = new double[100][19];
     int pdpLine = 0;
     
     private void getPDPdata() throws IOException {
@@ -214,6 +219,7 @@ public class Robot extends IterativeRobot {
     	}
     	pdpArray[pdpLine][16] = pdp.getVoltage();
     	pdpArray[pdpLine][17] = pdp.getTemperature();
+    	pdpArray[pdpLine][18] = RobotMap.compressor.getCompressorCurrent();
     	if (pdpLine == 99) {
     		for (int j=0; j<100; j++) {
 	    		for (int i=0; i<18; i++) {
