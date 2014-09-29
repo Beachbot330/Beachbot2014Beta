@@ -222,7 +222,7 @@ public class Robot extends IterativeRobot {
     	pdpArray[pdpLine][18] = RobotMap.compressor.getCompressorCurrent();
     	if (pdpLine == 99) {
     		for (int j=0; j<100; j++) {
-	    		for (int i=0; i<18; i++) {
+	    		for (int i=0; i<19; i++) {
 	    			writer.write(pdpArray[j][i] + ",");
 	    		}
 	    		writer.newLine();
