@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    BufferedWriter writer = null;
+//    BufferedWriter writer = null;
     private static boolean practicerobot;
     public static boolean isPracticerobot() {
         return practicerobot;
@@ -92,12 +92,12 @@ public class Robot extends IterativeRobot {
         
         Random random = new Random();
         
-        try {
-			writer = new BufferedWriter(new FileWriter("/home/lvuser/pdp" + random.nextInt() + ".csv"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        try {
+//			writer = new BufferedWriter(new FileWriter("/home/lvuser/pdp" + random.nextInt() + ".csv"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         
         
         SmartDashboard.putNumber("KinectRightOffset", 0);
@@ -120,13 +120,13 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
         System.out.println("Running Auto: " + autonomousCommand.getName());
-        try {
-			writer.write("Auto");
-			writer.newLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        try {
+//			writer.write("Auto");
+//			writer.newLine();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     }
     /**
      * This function is called periodically during autonomous
@@ -150,13 +150,13 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        try {
-			writer.write("Teleop");
-			writer.newLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        try {
+//			writer.write("Teleop");
+//			writer.newLine();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         
     }
     /**
@@ -202,12 +202,12 @@ public class Robot extends IterativeRobot {
         Robot.chassis.stopDrive();     
         Robot.arm.stopArm();
         Robot.pickup.setPickupMotorOff();
-        try {
-			writer.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        try {
+//			writer.flush();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         
     }    
     double pdpArray[][] = new double[100][19];
@@ -223,9 +223,9 @@ public class Robot extends IterativeRobot {
     	if (pdpLine == 99) {
     		for (int j=0; j<100; j++) {
 	    		for (int i=0; i<19; i++) {
-	    			writer.write(pdpArray[j][i] + ",");
+//	    			writer.write(pdpArray[j][i] + ",");
 	    		}
-	    		writer.newLine();
+//	    		writer.newLine();
     		}
     	} 	
     	
