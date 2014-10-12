@@ -220,14 +220,14 @@ public class Robot extends IterativeRobot {
     	pdpArray[pdpLine][16] = pdp.getVoltage();
     	pdpArray[pdpLine][17] = pdp.getTemperature();
     	pdpArray[pdpLine][18] = RobotMap.compressor.getCompressorCurrent();
-    	if (pdpLine == 99) {
-    		for (int j=0; j<100; j++) {
-	    		for (int i=0; i<19; i++) {
+//    	if (pdpLine == 99) {
+//    		for (int j=0; j<100; j++) {
+//	    		for (int i=0; i<19; i++) {
 //	    			writer.write(pdpArray[j][i] + ",");
-	    		}
+//	    		}
 //	    		writer.newLine();
-    		}
-    	} 	
+//    		}
+//    	} 	
     	
     	if (pdpLine >=99)
     		pdpLine = 0;
