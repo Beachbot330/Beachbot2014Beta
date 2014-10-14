@@ -84,7 +84,7 @@ public class OI {
         
         //leftKinectJoystick = new KinectStick(1); TODO: Reimplement
         
-        operatorJoystick = new Joystick(3);
+        operatorJoystick = new Joystick(2);
         
         shooterEjectButton = new JoystickButton(operatorJoystick, 12);
         shooterEjectButton.whenReleased(new ShooterEjectGroup());
@@ -114,7 +114,7 @@ public class OI {
         manualArmButton.whileHeld(new ManualArm());
         pickupOffButton = new JoystickButton(operatorJoystick, 4);
         pickupOffButton.whileHeld(new PickupReverseThenStop());
-        rightJoystick = new Joystick(2);
+        rightJoystick = new Joystick(1);
         
         wingOpenButton = new JoystickButton(rightJoystick, 3);
         wingOpenButton.whenPressed(new WingsOpen());
@@ -122,7 +122,7 @@ public class OI {
         shootButton.whenPressed(new Shoot());
         shiftLowButton = new JoystickButton(rightJoystick, 2);
         shiftLowButton.whenPressed(new ShiftLow());
-        leftJoystick = new Joystick(1);
+        leftJoystick = new Joystick(0);
         
         shooterEjectButton2 = new JoystickButton(leftJoystick, 1);
         shooterEjectButton2.whenReleased(new ShooterEjectGroup());
