@@ -10,13 +10,13 @@
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.Beachbot2014Java.RobotMap;
 /**
  *
  */
-public class  ShiftHigh extends Command implements AutoSpreadsheetCommand {
+public class  ShiftHigh extends BBCommand {
     public ShiftHigh() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -32,7 +32,7 @@ public class  ShiftHigh extends Command implements AutoSpreadsheetCommand {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        Robot.logger("Current air pressure while shifting high: " + Robot.chassis.getPressureGauge());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -46,16 +46,5 @@ public class  ShiftHigh extends Command implements AutoSpreadsheetCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
         end();
-    }
-    public void setParam1(double param1) {
-    }
-    public void setParam2(double param2) {
-    }
-    public void setParam3(double param3) {
-    }
-    public void setStopAtEnd(boolean stopAtEnd) {
-    }
-    public Command copy() {
-        return new ShiftHigh();
     }
 }

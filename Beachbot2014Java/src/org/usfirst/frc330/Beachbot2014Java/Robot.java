@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import java.io.File;
 
 import org.usfirst.frc330.Beachbot2014Java.commands.AutonomousCommand;
 import org.usfirst.frc330.Beachbot2014Java.subsystems.Arm;
@@ -58,6 +59,11 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
 //    BufferedWriter writer = null;
+    private static BufferedWriter logFile = null;
+    
+    private static java.util.Calendar calendar = null;
+    
+    
     private static boolean practicerobot;
     public static boolean isPracticerobot() {
         return practicerobot;
@@ -98,6 +104,28 @@ public class Robot extends IterativeRobot {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+        try {
+        	calendar = new java.util.GregorianCalendar();
+        	calendar.setTimeInMillis(System.currentTimeMillis());
+        	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        	
+			File file = new File("/home/lvuser/BB_Log" + sdf.format(calendar.getTime()) + ".txt");
+ 
+			// if file doesnt exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+ 
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			logFile = new BufferedWriter(fw);
+ 
+		}
+        catch (IOException e) {
+			System.out.println("Error opening BB logfile:");
+			System.out.println(e);
+		}
+        logger("The robot has started up");
+
         
         
         SmartDashboard.putNumber("KinectRightOffset", 0);
@@ -127,7 +155,7 @@ public class Robot extends IterativeRobot {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-    }
+		}
     /**
      * This function is called periodically during autonomous
      */
@@ -212,6 +240,20 @@ public class Robot extends IterativeRobot {
     }    
     double pdpArray[][] = new double[100][19];
     int pdpLine = 0;
+    
+    public static void logger(String data) {
+    	try{
+	    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS  ");
+	    	logFile.write(sdf.format(System.currentTimeMillis()));
+			logFile.write(data);
+			logFile.write("\r\n");
+			logFile.flush();
+    	}
+    	catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     
     private void getPDPdata() throws IOException {
     	for (int i=0; i<16; i++) {
