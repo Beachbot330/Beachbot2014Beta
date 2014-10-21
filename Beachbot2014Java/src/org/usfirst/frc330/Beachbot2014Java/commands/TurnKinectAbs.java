@@ -45,8 +45,4 @@ public class TurnKinectAbs extends TurnGyroAbs {
         angle = angle*direction;
         super.initialize();
     }
-    
-    public Command copy() {
-        return new TurnKinectAbs(0);
-    }
 }

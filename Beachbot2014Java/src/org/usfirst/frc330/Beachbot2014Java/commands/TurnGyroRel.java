@@ -9,7 +9,7 @@
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.Beachbot2014Java.commands.TurnGyroAbs;
 /*
@@ -46,7 +46,7 @@ public class  TurnGyroRel extends TurnGyroAbs{
         super.end(); //To change body of generated methods, choose Tools | Templates.
         angle = origAngle;
     }
-    public Command copy() {
+    public BBCommand copy() {
         return new TurnGyroRel(0);
     }
 }

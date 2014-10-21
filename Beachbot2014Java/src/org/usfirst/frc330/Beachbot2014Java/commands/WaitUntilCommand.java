@@ -7,12 +7,12 @@ package org.usfirst.frc330.Beachbot2014Java.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 
 /**
  * Wait until a certain amount of time in the match has elapsed. 
  */
-public class WaitUntilCommand extends Command implements AutoSpreadsheetCommand {
+public class WaitUntilCommand extends BBCommand implements AutoSpreadsheetCommand {
     double timeToFinish = 0;
     
     public WaitUntilCommand() {
@@ -29,10 +29,6 @@ public class WaitUntilCommand extends Command implements AutoSpreadsheetCommand 
     }
 
     public void setStopAtEnd(boolean stopAtEnd) {
-    }
-
-    public Command copy() {
-        return new WaitUntilCommand();
     }
 
     protected void initialize() {

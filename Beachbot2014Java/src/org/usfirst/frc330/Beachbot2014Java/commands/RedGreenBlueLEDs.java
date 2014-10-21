@@ -9,12 +9,12 @@
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  RedGreenBlueLEDs extends Command {
+public class  RedGreenBlueLEDs extends BBCommand {
     double LEDTimer;
     boolean red;
     boolean blue;

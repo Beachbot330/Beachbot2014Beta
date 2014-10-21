@@ -5,7 +5,7 @@
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /*
  * $Log$
@@ -17,7 +17,7 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
  * 
  * @author Joe
  */
-public class setGyroComp extends Command implements AutoSpreadsheetCommand{
+public class setGyroComp extends BBCommand implements AutoSpreadsheetCommand{
 
     protected void initialize() {
         Robot.chassis.setGyroOffset(gyroComp);
@@ -66,7 +66,7 @@ public class setGyroComp extends Command implements AutoSpreadsheetCommand{
     public void setStopAtEnd(boolean stopAtEnd) {
     }
 
-    public Command copy() {
+    public BBCommand copy() {
         return new setGyroComp();
     }
     

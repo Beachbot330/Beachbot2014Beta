@@ -9,12 +9,12 @@
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  DriveTime extends Command implements AutoSpreadsheetCommand {
+public class  DriveTime extends BBCommand implements AutoSpreadsheetCommand {
     double left, right;
     
     public DriveTime(double timeout, double left, double right) {

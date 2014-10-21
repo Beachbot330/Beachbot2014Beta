@@ -41,8 +41,4 @@ public class TurnKinectRel extends TurnGyroRel {
         angle = angle*direction;
         super.initialize();
     }
-    
-    public Command copy() {
-        return new TurnKinectRel(0);
-    }
 }

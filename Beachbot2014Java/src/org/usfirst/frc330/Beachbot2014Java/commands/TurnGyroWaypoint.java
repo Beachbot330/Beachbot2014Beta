@@ -5,7 +5,7 @@
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /*
  * $Log: TurnGyroWaypoint.java,v $
@@ -32,7 +32,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         super.initialize();
     }
 
-    public Command copy() {
+    public BBCommand copy() {
         return new TurnGyroWaypoint();
     }
     

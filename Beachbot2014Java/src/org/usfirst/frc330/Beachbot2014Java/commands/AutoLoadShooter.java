@@ -9,12 +9,11 @@
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 /**
  *
  */
-public class  AutoLoadShooter extends Command{
+public class  AutoLoadShooter extends BBCommand{
     public AutoLoadShooter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -38,20 +37,16 @@ public class  AutoLoadShooter extends Command{
     boolean frontPickuping;
     
     protected void initialize() {
-        //System.out.println("Initialize");
         started = false;
         loading = false;
         if(Robot.arm.getIsArmRear()){
             moveArm_old(Robot.arm.getArmBackPickup());
-            //System.out.println("Move to Rear Pickup");
         }
         else {
             moveArm_old(Robot.arm.getArmFrontPickup());
-            
-            //System.out.println("Move to Front Pickup");
         }
     }
-    // Called repeatedly when this Command is scheduled to run
+
     protected void execute() {
         if(Robot.pickup.isBallInPickup() && loading==false){
             started = false;

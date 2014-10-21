@@ -8,12 +8,12 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  CatchWithSensor extends Command {
+public class  CatchWithSensor extends BBCommand {
     public CatchWithSensor() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

@@ -8,7 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: AutoWait.java,v $
@@ -33,7 +33,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * variable "AutoWait". This is defined on the dashboard.
  * @author Joe Ross
  */
-public class AutoWait extends Command {
+public class AutoWait extends BBCommand {
     
     public AutoWait() {
         // Use requires() here to declare subsystem dependencies

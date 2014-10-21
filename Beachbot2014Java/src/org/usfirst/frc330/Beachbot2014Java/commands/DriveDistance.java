@@ -10,7 +10,7 @@
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
@@ -24,7 +24,7 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
  * @see TurnGyroWaypoint
  * @see DriveDistanceRel
  */
-public class  DriveDistance extends Command implements AutoSpreadsheetCommand {
+public class  DriveDistance extends BBCommand implements AutoSpreadsheetCommand {
     double leftDistance, rightDistance, tolerance;
     boolean stopAtEnd = false;
     

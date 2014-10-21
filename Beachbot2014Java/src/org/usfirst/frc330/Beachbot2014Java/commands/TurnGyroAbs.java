@@ -9,13 +9,13 @@
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
  *
  */
-public class  TurnGyroAbs extends Command implements AutoSpreadsheetCommand {
+public class  TurnGyroAbs extends BBCommand implements AutoSpreadsheetCommand {
     double angle, tolerance;
     boolean stopAtEnd = false;
     boolean enable = true;
@@ -118,7 +118,7 @@ public class  TurnGyroAbs extends Command implements AutoSpreadsheetCommand {
     public void setStopAtEnd(boolean stopAtEnd) {
         this.stopAtEnd = stopAtEnd;
     }
-    public Command copy() {
+    public BBCommand copy() {
         return new TurnGyroAbs(0);
     }
 }

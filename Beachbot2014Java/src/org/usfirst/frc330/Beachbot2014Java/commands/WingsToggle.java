@@ -8,7 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  * Toggles the wings. Does not return until the wings have finished moving 
@@ -16,7 +16,7 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
  * Uses the commanded state of the wings, so that it can be called while a previously
  * commanded WingsOpen or WingsClose are still running.
  */
-public class  WingsToggle extends Command {
+public class  WingsToggle extends BBCommand {
     boolean state = false;
     public WingsToggle() {
         // Use requires() here to declare subsystem dependencies

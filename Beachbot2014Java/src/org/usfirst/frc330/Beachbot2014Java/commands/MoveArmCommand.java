@@ -6,14 +6,14 @@
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
  *
  * @author Joe-XPS13-W7
  */
-public abstract class MoveArmCommand extends Command {
+public abstract class MoveArmCommand extends BBCommand {
     double setpoint; 
     boolean started = false;
     double outputRange = 0;

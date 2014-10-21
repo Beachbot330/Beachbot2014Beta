@@ -9,13 +9,13 @@
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.BBCommand;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  * Closes the wings. Does not return until the wings have finished closing 
  * (based on limit switches and the Preference WingsOpenWait. Does not use parameters.
  */
-public class  WingsClose extends Command implements AutoSpreadsheetCommand {
+public class  WingsClose extends BBCommand implements AutoSpreadsheetCommand {
     public WingsClose() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -50,8 +50,5 @@ public class  WingsClose extends Command implements AutoSpreadsheetCommand {
     public void setParam3(double param3) {
     }
     public void setStopAtEnd(boolean stopAtEnd) {
-    }
-    public Command copy() {
-        return new WingsClose();
     }
 }

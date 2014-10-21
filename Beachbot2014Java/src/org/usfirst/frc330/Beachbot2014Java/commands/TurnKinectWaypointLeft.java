@@ -15,10 +15,6 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
  * The TurnGyroWaypoint command turns in place towards a waypoint using the gyro.
  */
 public class TurnKinectWaypointLeft extends TurnGyroWaypoint {
-
-    public Command copy() {
-        return new TurnKinectWaypointLeft(); 
-    }
     boolean quit = false;
     double offset = 0;
     protected void initialize() {
