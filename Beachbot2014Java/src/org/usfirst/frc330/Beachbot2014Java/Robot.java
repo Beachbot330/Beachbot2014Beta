@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import java.util.ArrayList;
 import java.io.File;
 
 import org.usfirst.frc330.Beachbot2014Java.commands.AutonomousCommand;
@@ -59,7 +60,10 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
 //    BufferedWriter writer = null;
-    private static BufferedWriter logFile = null;
+    private static BufferedWriter roboRioLogFile = null;
+    private static BufferedWriter usbLogFile = null;
+    private static ArrayList<BufferedWriter> logFile = new ArrayList<BufferedWriter>(2);
+    
     
     private static java.util.Calendar calendar = null;
     
@@ -109,21 +113,29 @@ public class Robot extends IterativeRobot {
         	calendar.setTimeInMillis(System.currentTimeMillis());
         	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
         	
-			File file = new File("/home/lvuser/BB_Log" + sdf.format(calendar.getTime()) + ".txt");
+			File file = new File("/home/lvuser/BB_Log_" + sdf.format(calendar.getTime()) + ".txt");
+			File usbFile = new File("/media/sda1/BB_Log_" + sdf.format(calendar.getTime()) + ".txt");
  
 			// if file doesnt exists, then create it
 			if (!file.exists()) {
 				file.createNewFile();
 			}
+			if (!usbFile.exists()) {
+				usbFile.createNewFile();
+			}
  
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			logFile = new BufferedWriter(fw);
+			roboRioLogFile = new BufferedWriter(fw);
+			FileWriter usbFW = new FileWriter(file.getAbsoluteFile());
+			usbLogFile = new BufferedWriter(usbFW);
  
 		}
         catch (IOException e) {
 			System.out.println("Error opening BB logfile:");
 			System.out.println(e);
 		}
+        logFile.add(0, roboRioLogFile);
+        logFile.add(1, usbLogFile);
         logger("The robot has started up");
 
         
@@ -242,17 +254,19 @@ public class Robot extends IterativeRobot {
     int pdpLine = 0;
     
     public static void logger(String data) {
-    	try{
-	    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS  ");
-	    	logFile.write(sdf.format(System.currentTimeMillis()));
-			logFile.write(data);
-			logFile.write("\r\n");
-			logFile.flush();
+    	for(int i=0; i<2; i++){
+	    	try{
+		    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS  ");
+		    	logFile.get(i).write(sdf.format(System.currentTimeMillis()));
+				logFile.get(i).write(data);
+				logFile.get(i).write("\r\n");
+				logFile.get(i).flush();
+	    	}
+	    	catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
-    	catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
     
     private void getPDPdata() throws IOException {
