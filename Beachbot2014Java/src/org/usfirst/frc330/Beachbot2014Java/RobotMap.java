@@ -61,8 +61,8 @@ public class RobotMap {
         chassisLeftDrive2 = new Talon(1);
 	LiveWindow.addActuator("Chassis", "LeftDrive2", (Talon) chassisLeftDrive2);
         
-        chassisLeftDrive3 = new Talon(2);
-	LiveWindow.addActuator("Chassis", "LeftDrive3", (Talon) chassisLeftDrive3);
+        chassisLeftDrive3 = new VictorSP(2);
+	LiveWindow.addActuator("Chassis", "LeftDrive3", (VictorSP) chassisLeftDrive3);
         
         chassisRightDrive1 = new Talon(3);
 	LiveWindow.addActuator("Chassis", "RightDrive1", (Talon) chassisRightDrive1);
@@ -70,8 +70,8 @@ public class RobotMap {
         chassisRightDrive2 = new Talon(4);
 	LiveWindow.addActuator("Chassis", "RightDrive2", (Talon) chassisRightDrive2);
         
-        chassisRightDrive3 = new Talon(5);
-	LiveWindow.addActuator("Chassis", "RightDrive3", (Talon) chassisRightDrive3);
+        chassisRightDrive3 = new VictorSP(5);
+	LiveWindow.addActuator("Chassis", "RightDrive3", (VictorSP) chassisRightDrive3);
         
         //chassisCompressor = new Compressor(1, 14, 1, 8);  TODO: Test our ability to control the compressor
 	
@@ -123,11 +123,11 @@ public class RobotMap {
         wingsWingRightLimitSwitch = new DigitalInput(1);
 	LiveWindow.addSensor("Wings", "WingRightLimitSwitch", wingsWingRightLimitSwitch);
         
-        pickupPickup1 = new Victor(6);
-	LiveWindow.addActuator("Pickup", "Pickup1", (Victor) pickupPickup1);
+        pickupPickup1 = new TalonSRX(6);
+	LiveWindow.addActuator("Pickup", "Pickup1", (TalonSRX) pickupPickup1);
         
-        pickupPickup2 = new Victor(7);
-	LiveWindow.addActuator("Pickup", "Pickup2", (Victor) pickupPickup2);
+        pickupPickup2 = new TalonSRX(7);
+	LiveWindow.addActuator("Pickup", "Pickup2", (TalonSRX) pickupPickup2);
         
  /*       pickupCurrentSensor = new AnalogInput(2);
 	LiveWindow.addSensor("Pickup", "CurrentSensor", pickupCurrentSensor);
