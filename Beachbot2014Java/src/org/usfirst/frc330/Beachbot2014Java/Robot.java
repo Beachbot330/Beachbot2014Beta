@@ -26,6 +26,7 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.SmartDashboardSender;
 import org.usfirst.frc330.Beachbot2014Java.subsystems.Wings;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
@@ -62,7 +63,7 @@ public class Robot extends IterativeRobot {
 //    BufferedWriter writer = null;
     private static BufferedWriter roboRioLogFile = null;
     private static BufferedWriter usbLogFile = null;
-    private static ArrayList<BufferedWriter> logFile = new ArrayList<BufferedWriter>(2);
+    private static ArrayList<BufferedWriter> logFile = new ArrayList<BufferedWriter>(4);
     
     
     private static java.util.Calendar calendar = null;
@@ -108,35 +109,47 @@ public class Robot extends IterativeRobot {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-        try {
-        	calendar = new java.util.GregorianCalendar();
-        	calendar.setTimeInMillis(System.currentTimeMillis());
-        	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-        	
-			File file = new File("/home/lvuser/BB_Log_" + sdf.format(calendar.getTime()) + ".txt");
-			File usbFile = new File("/media/sda1/BB_Log_" + sdf.format(calendar.getTime()) + ".txt");
- 
-			// if file doesnt exists, then create it
-			if (!file.exists()) {
-				file.createNewFile();
+    	calendar = new java.util.GregorianCalendar();
+    	calendar.setTimeInMillis(System.currentTimeMillis());
+    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+    	
+		File file = new File("/home/lvuser/BB_Log_" + sdf.format(calendar.getTime()) + ".txt");
+		File usbFile = new File("/media/sda1/BB_Log_" + sdf.format(calendar.getTime()) + ".txt");
+		File csvFile = new File("/home/lvuser/BB_Chart_" + sdf.format(calendar.getTime()) + ".csv");
+		File usbCsvFile = new File("/media/sda1/BB_Chart_" + sdf.format(calendar.getTime()) + ".csv");
+		ArrayList<File> fileList = new ArrayList<File>(4);
+		fileList.add(0, file);
+		fileList.add(1, usbFile);
+		fileList.add(2, csvFile);
+		fileList.add(3,usbCsvFile);
+		
+		for(int i=0; i<4; i++){
+	    	try{
+	    		fileList.get(i).createNewFile();
+	    		FileWriter fw = new FileWriter(fileList.get(i).getAbsoluteFile());
+	    		logFile.add(i, new BufferedWriter(fw));
+	    	}
+	    	catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			if (!usbFile.exists()) {
-				usbFile.createNewFile();
-			}
- 
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			roboRioLogFile = new BufferedWriter(fw);
-			FileWriter usbFW = new FileWriter(file.getAbsoluteFile());
-			usbLogFile = new BufferedWriter(usbFW);
- 
-		}
-        catch (IOException e) {
-			System.out.println("Error opening BB logfile:");
-			System.out.println(e);
-		}
-        logFile.add(0, roboRioLogFile);
-        logFile.add(1, usbLogFile);
+    	}
+		
         logger("The robot has started up");
+        
+        for(int i=2; i<4; i++){
+        	String header = "Timestamp, Arm Position, Voltage, Pressure V";
+        	try{
+        		logFile.get(i).write(header);
+        		logFile.get(i).write("\r\n");
+        		logFile.get(i).flush();
+        	}
+        	catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        	
 
         
         
@@ -203,6 +216,11 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	ArrayList<String> data = new ArrayList<String>(3);
+    	data.add("" + arm.getArmPosition());
+    	data.add("" + DriverStation.getInstance().getBatteryVoltage());
+    	data.add("" + chassis.getPressureGauge());
+    	csvWriter(data);
         Scheduler.getInstance().run();
         chassis.calcPeriodic();
         pickup.calcPeriodic();
@@ -259,6 +277,27 @@ public class Robot extends IterativeRobot {
 		    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS  ");
 		    	logFile.get(i).write(sdf.format(System.currentTimeMillis()));
 				logFile.get(i).write(data);
+				logFile.get(i).write("\r\n");
+				logFile.get(i).flush();
+				//System.out.println("Current log file: " + logFile.get(i) + ":");
+				//System.out.println("" + data);
+	    	}
+	    	catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    }
+    
+    public static void csvWriter(ArrayList<String> data) {
+    	for(int i=2; i<4; i++){
+	    	try{
+	    		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS  ");
+		    	logFile.get(i).write(sdf.format(System.currentTimeMillis()) + ", ");
+	    		for (String s : data){
+	    			logFile.get(i).write(s);
+	    			logFile.get(i).write(", ");
+	    		}
 				logFile.get(i).write("\r\n");
 				logFile.get(i).flush();
 	    	}
